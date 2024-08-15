@@ -1,9 +1,18 @@
 import express from "express";
 import connectDB from "./db.js";
-import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import cors from "cors";
+import productRoutes from "./Routes/ProductRoute.js";
+import userRoutes from "./Routes/userRoute.js";
+import cartRoutes from "./Routes/CartRoute.js";
+import cookieParser from "cookie-parser";
 
-const app=express();
-app.use(bodyParser.json()); //stores in req.body
+dotenv.config();
+const app = express()
+
+app.use(cors({origin:"*",credentials:true}))
+app.use(express.json())
+app.use(cookieParser())
 
 connectDB();
 
@@ -11,7 +20,13 @@ app.get("/",(req,res)=>{
     res.status(200).send("welcome");
 });
 
-const PORT= 3000;
+
+
+app.use('/api/v1/products',productRoutes);
+app.use('/api/v1/users',userRoutes);
+app.use('/api/v1/cart',cartRoutes);
+
+const PORT= 8080;
 app.listen(PORT,(err)=>{
     if(err){
         console.log('server crash',err);

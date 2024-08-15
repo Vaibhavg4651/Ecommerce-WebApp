@@ -1,0 +1,14 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html{
+    position: relative;
+}
+
+/* styles.css */
+.fixed-box {
+    width: 250px; /* Set the fixed width for the boxes */
+    height: 425px; /* Set the fixed height */
+  }
+  

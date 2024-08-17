@@ -3,8 +3,9 @@ import asyncHandler from "express-async-handler"
 
 const addToCart = asyncHandler(async (req, res) => {
         const { productId, quantity } = req.body;
-    const userId = req.user.id;
-
+        console.log(req.body);
+        const userId = req.user.id;
+        console.log(userId);
     try {
         let cartItem = await CartItem.findOne({ userId, productId });
         if (cartItem) {

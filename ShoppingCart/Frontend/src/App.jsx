@@ -1,12 +1,13 @@
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
-import Navbar from './components/navbar'
-import ShowProduct from './components/product/ShowProduct'
+import Header from './shared/components/Header'
 function App() {
   
   return (
     <>
-    <Navbar/>
-    <ShowProduct/>
+    <BrowserRouter>
+      <Header/>
+    </BrowserRouter>
     </>
   )
 }

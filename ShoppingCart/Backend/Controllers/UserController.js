@@ -11,6 +11,7 @@ const authUser = asyncHandler(
 
     const user = await User.findOne({ email: email });
     if (user===null) {
+      res.status(401).json({"message":"Invalid Password or Email"});
       throw new Error("Invalid  email or password");
     } else {
       const validate = await bcrypt.compare(password, user.password);
@@ -23,11 +24,11 @@ const authUser = asyncHandler(
           expires: new Date(Date.now() + 1000 * 36000),
           httpOnly: true,
           sameSite: "none",
-           secure:true
+          secure:true
         });
         res.status(200).json({ success: true, message: user, token: token });
     }else {
-        res.status(401);
+        res.status(401).json({"message":"Invalid Password or Email"});
         throw new Error("Invalid email or password");
       }
     }
@@ -45,24 +46,20 @@ const logout = asyncHandler(
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
+  console.log(req.body);
   if (!email || !name || !password) {
     throw new Error("provide all details during registeration ...");
   }
   const userExists = await User.findOne({ email });
-
   if (userExists) {
-    res.status(400);
     throw new Error("User already exists");
   }
   const hashedpassword = await bcrypt.hash(req.body.password, 10);
-
   const newUser = new User({
     name: req.body.name,
     email: req.body.email,
     password: hashedpassword
   });
-
-
   const user = await newUser.save();
   res.status(200).json({"success":true,"message":user})
 });

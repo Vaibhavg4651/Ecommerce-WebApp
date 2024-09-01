@@ -24,14 +24,29 @@ const getProductById = asyncHandler(async (req, res) => {
 
 
 const addProduct = asyncHandler(async (req, res) => {
-  const product = new Product({
-    name: req.body.name,
-    price: req.body.price,
-    image: req.body.image,
-  })
+  const products = req.body.products; // assuming an array of products is sent in req.body.products
 
-  const createdProduct = await product.save()
-  res.status(201).json({"success":true,"message":createdProduct})
+  if (!Array.isArray(products) || products.length === 0) {
+    return res.status(400).json({ message: 'No products to add' });
+  }
+
+  const addedProducts = [];
+
+  for (const productData of products) {
+    const product = new Product({
+      name: productData.name,
+      price: productData.price,
+      image: productData.image,
+    });
+
+    const savedProduct = await product.save();
+    addedProducts.push(savedProduct);
+  }
+
+  res.status(201).json({
+    message: 'Products added successfully',
+    products: addedProducts,
+  });
 });
 
 export {

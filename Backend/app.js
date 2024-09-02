@@ -26,7 +26,7 @@ app.use('/api/v1/products',productRoutes);
 app.use('/api/v1/users',userRoutes);
 app.use('/api/v1/cart',cartRoutes);
 
-const PORT= 8000;
+const PORT= 8001;
 app.listen(PORT,(err)=>{
     if(err){
         console.log('server crash',err);

@@ -31,7 +31,7 @@
     <title>eCommerece</title>
   </head>
   <body>
-
+    <script src="dist/bundle.js"></script>
     <header class="header w-full">
       <!--! topHeader -->
       <div
@@ -53,8 +53,8 @@
               <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
             </label>
           </form>
-          <div class="icons hidden mr-2 text-3xl md:flex gap-8 text-gray-600">
-            <div class="relative hidden" id="login-button">
+          <div class="icons mr-2 text-3xl md:flex gap-8 text-gray-600">
+            <div class="relative" id="login-button">
               <button 
                   class="absolute right-2 bg-red-500 hover:bg-red-600 text-white rounded-xl px-4 text-base font-semibold h-9"
                 >
@@ -748,5 +748,8 @@
     ></script>
     <!--!javascript file  -->
     <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/auth.js"></script>
+    <!-- !fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
   </body>
 </html>

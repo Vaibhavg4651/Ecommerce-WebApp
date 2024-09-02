@@ -1,5 +1,5 @@
 import { swiperData, TitleCategories, NewProducts, BolgSwiper } from "./dummy.js";
-import Swiper from "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js";
+import { isAuthenticated, toggleAuthElements , fetchProducts} from "./auth.js";
 
 
 const newspaper = document.getElementById("newspaper");
@@ -10,12 +10,20 @@ const sidebarNavbar = document.getElementById("sidebarNavbar");
 const categoriesBtn = document.getElementById("categoriesBtn");
 const sidebarCategories = document.getElementById("sidebarCategories");
 const closeButton = document.querySelectorAll(".closeButton");
-const swiperr = document.querySelector(".swiper");
-const categories_swiper = document.querySelector(".categories_swiper");
-const blog_swiper = document.querySelector(".blog_swiper");
 const details = document.querySelectorAll("details");
+const loginButton = document.getElementById('login-button');
+const userIcon = document.getElementById('user-icon');
 
 
+
+// Auth check
+toggleAuthElements(loginButton, userIcon);
+
+//fetch products
+
+document.addEventListener("DOMContentLoaded", function() {
+  fetchProducts();
+});
 
 //! close summary tag when another is open
 // Add the onclick listeners.
@@ -30,18 +38,6 @@ details.forEach((targetDetail) => {
   });
 });
 
-// ! newspaper
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    newspaper.classList.add("show")
-  }, 2000);
-})
-//! close mobile navbar
-overlayNavbar.addEventListener("click", closed);
-newspaperOverlay.addEventListener("click", closed);
-closeButton[0].addEventListener("click", closed);
-closeButton[1].addEventListener("click", closed);
-closeButton[2].addEventListener("click", closed);
 
 function closed() {
   sidebarNavbar.classList.remove("show");
@@ -203,75 +199,6 @@ document.getElementById("newProducts").innerHTML = NewProducts.map(
     `
 ).join("");
 
-
-
-const swiper = new Swiper(swiperr, {
-  grabCursor: true,
-  autoplay: {
-    delay: 5000,
-  },
-  scrollbar: {
-    el: ".swiper-scrollbar",
-    draggable: true,
-  },
-});
-
-
-const categoriesSwiper = new Swiper(categories_swiper, {
-  grabCursor: true,
-  slidesPerView: 4,
-  breakpoints: {
-    // when window width is >= 320px
-    320: {
-      slidesPerView: 1
-    },
-    // when window width is >= 480px
-    480: {
-      slidesPerView: 2
-    },
-    // when window width is >= 640px
-    640: {
-      slidesPerView: 3
-    },
-    800: {
-      slidesPerView: 4
-    }
-  },
-  autoplay: {
-    delay: 2000,
-  },
-  scrollbar: {
-    el: ".swiper-scrollbar",
-    draggable: true,
-  },
-});
-
-const blogswiper = new Swiper(blog_swiper, {
-  grabCursor: true,
-  slidesPerView: 4,
-  spaceBetween: 20,
-  breakpoints: {
-    // when window width is >= 320px
-    400: {
-      slidesPerView: 1
-    },
-    // when window width is >= 480px
-    460: {
-      slidesPerView: 2
-    },
-    // when window width is >= 640px
-    800: {
-      slidesPerView: 3
-    },
-    1200: {
-      slidesPerView: 4
-    }
-  },
-  scrollbar: {
-    el: ".swiper-scrollbar",
-    draggable: true,
-  },
-});
 
 
 //! reverse timer

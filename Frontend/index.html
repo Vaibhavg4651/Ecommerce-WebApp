@@ -43,6 +43,7 @@
           <h1 class="font-semibold text-4xl text-gray-600">Shopper</h1>
           <form class="relative w-full sm:w-3/5">
             <input
+            id="searchBar"
               class="w-full h-full p-2 border rounded-xl"
               placeholder="Enter Your Product Name..."
               id="search"
@@ -53,15 +54,15 @@
             </label>
           </form>
           <div class="icons hidden mr-2 text-3xl md:flex gap-8 text-gray-600">
-            <div class="relative">
-              <button
-                  class="absolute -top-0 left-3 bg-red-500 hover:bg-red-600 text-white rounded-xl px-4 text-base font-semibold h-9"
+            <div class="relative hidden" id="login-button">
+              <button 
+                  class="absolute right-2 bg-red-500 hover:bg-red-600 text-white rounded-xl px-4 text-base font-semibold h-9"
                 >
                   Login
               </button>
             </div>
-            <div class="relative">
-              <ion-icon name="person-outline"></ion-icon>
+            <div class="relative hidden" id="user-icon">
+              <ion-icon name="person-outline" ></ion-icon>
             </div>
             <div class="relative">
               <span
@@ -396,7 +397,7 @@
         </aside>
 
         <div class="products w-full lg:w-3/4 flex flex-col">
-          <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="product-container">
             <div class="NewArrivals flex flex-col gap-4">
               <h1 class="text-xl font-semibold border-b pb-4">New Arrivals</h1>
 

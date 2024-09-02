@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express()
 
-app.use(cors({origin:"http://127.0.0.1:5500",credentials:true}))
+app.use(cors({origin:"https://ecommerce-web-app-iota.vercel.app",credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 
